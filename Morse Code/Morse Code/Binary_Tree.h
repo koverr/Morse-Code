@@ -288,13 +288,17 @@ read_binary_tree(std::istream& in) {
 		return Binary_Tree<Item_Type>(the_data, left, right);
 	}
 }
+
 template<typename Item_Type>
 Binary_Tree<char> Binary_Tree<Item_Type>::create(std::ifstream& fin) {
 	char letter;
 	string morse;
-	
 
+	
 	getchar(fin, letter);
+	getline(fin, morse);
+
+	
 
 
 }
