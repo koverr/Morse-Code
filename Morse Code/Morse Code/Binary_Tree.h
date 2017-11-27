@@ -10,6 +10,8 @@
 #include <algorithm>
 #include "BTNode.h"
 #include <vector>
+#include <fstream>
+#include <map>
 
 template<typename Item_Type>
 class Binary_Tree
@@ -70,6 +72,8 @@ public:
 	void read_tree(std::vector<std::string>& text);
 
 	Binary_Tree<Item_Type> read_binary_tree(std::vector<std::string>& text, int& i);
+
+	Binary_Tree<char> create(std::ifstream& fin);
 
 	/** Return a string representation of the root */
 	std::string root_to_string() const {
@@ -284,8 +288,16 @@ read_binary_tree(std::istream& in) {
 		return Binary_Tree<Item_Type>(the_data, left, right);
 	}
 }
+template<typename Item_Type>
+Binary_Tree<char> Binary_Tree<Item_Type>::create(std::ifstream& fin) {
+	char letter;
+	string morse;
+	
+
+	getchar(fin, letter);
 
 
+}
 
 
 /** Return a pre-order traversal of the tree */
