@@ -7,6 +7,11 @@ Binary_Tree<char> create(std::ifstream& fin);
 
 int main() {
 
+	ifstream morseFile("morse.txt");
+
+	Binary_Tree<char>* mTree;
+	mTree = mTree->create(morseFile);
+
 }
 
 Binary_Tree<char> create(std::ifstream& fin) {
