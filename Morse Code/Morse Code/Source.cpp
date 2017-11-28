@@ -4,6 +4,7 @@
 using namespace std;
 
 Binary_Tree<char> create(std::ifstream& fin);
+string decode(string morse, Binary_Tree<char> mTree);
 
 int main() {
 
@@ -11,6 +12,8 @@ int main() {
 
 	Binary_Tree<char> mTree = create(morseFile);
 
+	cout << decode("._ ....", mTree);
+	cin.get();
 }
 
 Binary_Tree<char> create(std::ifstream& fin) {
@@ -48,4 +51,29 @@ Binary_Tree<char> create(std::ifstream& fin) {
 		ptr->data = letter;
 	}
 	return mTree;
+}
+
+string decode(string morse, Binary_Tree<char> mTree) {
+	string::iterator strItr = morse.begin();
+	string decoded = "";
+
+	
+	while (strItr != morse.end()) {
+		BTNode<char>* ptr = mTree.getRoot();
+		while (*strItr != ' ' ) {
+			if (*strItr == '.')
+				ptr = ptr->left;
+			else
+				ptr = ptr->right;
+
+			if (strItr + 1 != morse.end())
+				strItr++;
+			else
+				break;
+		}
+		decoded += ptr->data;
+		if(strItr != morse.end())
+			strItr++;
+	}
+	return decoded;
 }
