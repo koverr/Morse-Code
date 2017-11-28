@@ -73,8 +73,6 @@ public:
 
 	Binary_Tree<Item_Type> read_binary_tree(std::vector<std::string>& text, int& i);
 
-	Binary_Tree<char>* create(std::ifstream& fin);
-
 	/** Return a string representation of the root */
 	std::string root_to_string() const {
 		return root->to_string();
@@ -288,45 +286,6 @@ read_binary_tree(std::istream& in) {
 		return Binary_Tree<Item_Type>(the_data, left, right);
 	}
 }
-template<typename Item_Type>
-Binary_Tree<char>* Binary_Tree<Item_Type>::create(std::ifstream& fin) {
-	char letter;
-	string morse;
-	map<char, string> mMap;
-	Binary_Tree<char>* mTree;
-	BTNode<char>* root;
-	BTNode<char>* ptr;
-	string::iterator iter;
-	
-	root = new BTNode<char>(' ');
-	mTree = new Binary_Tree<char>(*root);
-
-
-	while (!fin.eof()) {
-		ptr = root;
-		getchar(fin, letter);
-		getline(fin, morse);
-		mMap[letter] = morse;
-		
-		iter = morse.begin();
-		while (iter != morse.end()) {
-			if (*iter == '.') {
-				if (ptr->left == NULL)
-					ptr->left = new BTNode<char>(' ');
-				ptr = ptr->left;
-			}
-			else {
-				if (ptr->right == NULL)
-					ptr->right = new BTNode<char>(' ');
-				ptr = ptr->right;
-			}
-			iter++;
-		}
-		ptr->data = letter;
-	}
-	return mTree;
-}
-
 
 /** Return a pre-order traversal of the tree */
 template<typename Item_Type>

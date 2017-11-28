@@ -9,8 +9,7 @@ int main() {
 
 	ifstream morseFile("morse.txt");
 
-	Binary_Tree<char>* mTree;
-	mTree = mTree->create(morseFile);
+	Binary_Tree<char> mTree = create(morseFile);
 
 }
 
