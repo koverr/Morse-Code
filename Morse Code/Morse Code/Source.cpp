@@ -58,29 +58,34 @@ Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {
 	return mTree;					//After finished with the file, return the tree
 }
 
+
+// Takes in a string of morse code seperated by spaces and a Morse code Binary Tree and converts the string from
+// Morse code to letters
+// Complexity: O(n) because it iterates through the string and makes a single pointer traversal for each char in the string
 string decode(string morse, Binary_Tree<char> mTree) {
 	string::iterator strItr = morse.begin();
 	string decoded = "";
+	BTNode<char>* ptr;
 
 	
-	while (strItr != morse.end()) {
-		BTNode<char>* ptr = mTree.getRoot();
+	while (strItr != morse.end()) {			// Keeps converting until the end of the string
+		ptr = mTree.getRoot();		// Reset the pointer after every letter is decoded so it starts at the top of the tree
 		while (*strItr != ' ' ) {
 			if (*strItr == '.')
-				ptr = ptr->left;
+				ptr = ptr->left;		// If dot then traverse left in the tree
 			else
-				ptr = ptr->right;
+				ptr = ptr->right;		// If underscore then traverse right in the tree
 
-			if (strItr + 1 != morse.end())
+			if (strItr + 1 != morse.end())		// Iterate to next character in string as long as there are more characters to decode
 				strItr++;
 			else
 				break;
 		}
-		decoded += ptr->data;
+		decoded += ptr->data;		// Append the decoded letter to a string
 		if(strItr != morse.end())
 			strItr++;
 	}
-	return decoded;
+	return decoded;		// Return decoded string
 }
 
 string encode(string chars, map<char, string> mMap) {
