@@ -3,23 +3,25 @@
 
 using namespace std;
 
-Binary_Tree<char> create(std::ifstream& fin);
+Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap);
 string decode(string morse, Binary_Tree<char> mTree);
+string encode(string chars, map<char, string> mMap);
 
 int main() {
 
 	ifstream morseFile("morse.txt");
+	map<char, string> mMap;
+	Binary_Tree<char> mTree = create(morseFile, mMap);
 
-	Binary_Tree<char> mTree = create(morseFile);
+	cout << decode("._ ._.. . _._.", mTree) << endl;
 
-	cout << decode("._ ....", mTree);
+	cout << decode(encode("abcdefghijklmnopqrstuvwxyz", mMap), mTree);
 	cin.get();
 }
 
-Binary_Tree<char> create(std::ifstream& fin) {
+Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {
 	char letter;
 	string morse;
-	map<char, string> mMap;
 	Binary_Tree<char> mTree;
 	BTNode<char>* root;
 	BTNode<char>* ptr;
@@ -76,4 +78,17 @@ string decode(string morse, Binary_Tree<char> mTree) {
 			strItr++;
 	}
 	return decoded;
+}
+
+string encode(string chars, map<char, string> mMap) {
+	string morse = "";
+	string::iterator iter = chars.begin();
+
+	while (iter != chars.end()) {
+		morse += mMap[*iter];
+		iter++;
+		if (iter != chars.end())
+			morse += " ";
+	}
+	return morse;
 }
