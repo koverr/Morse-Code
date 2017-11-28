@@ -8,7 +8,6 @@ string decode(string morse, Binary_Tree<char> mTree);
 string encode(string chars, map<char, string> mMap);
 
 int main() {
-
 	ifstream morseFile("morse.txt");
 	map<char, string> mMap;
 	Binary_Tree<char> mTree = create(morseFile, mMap);
@@ -19,7 +18,11 @@ int main() {
 	cin.get();
 }
 
-Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {
+Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {		
+	/*Takes in an input file, and a morse map reads in
+	the information needed to complete the morse map and tree
+	Time Complexity: O(n)
+		-Because the function needs to read through all of the morse strings*/
 	char letter;
 	string morse;
 	Binary_Tree<char> mTree;
@@ -27,32 +30,32 @@ Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {
 	BTNode<char>* ptr;
 	string::iterator iter;
 
-	root = new BTNode<char>(' ');
+	root = new BTNode<char>(' ');		//Makes a new root node and starts the tree
 	mTree.setRoot(root);
 
-	while (!fin.eof()) {
-		ptr = root;
+	while (!fin.eof()) {			//While the there is still data in the file
+		ptr = root;						//Start at the top of the tree
 		fin >> letter;
 		getline(fin, morse);
-		mMap[letter] = morse;
+		mMap[letter] = morse;			//Map the letter to its morse code
 
 		iter = morse.begin();
-		while (iter != morse.end()) {
-			if (*iter == '.') {
+		while (iter != morse.end()) {		//Iterate through the morse code to insert the letter into the tree
+			if (*iter == '.') {					//If  the morse character is a ., move to the left, make a new 'dead' node if there is nothing there yet
 				if (ptr->left == NULL)
 					ptr->left = new BTNode<char>(' ');
 				ptr = ptr->left;
 			}
-			else {
+			else {							//Same as above for _
 				if (ptr->right == NULL)
 					ptr->right = new BTNode<char>(' ');
 				ptr = ptr->right;
 			}
 			iter++;
 		}
-		ptr->data = letter;
+		ptr->data = letter;			//After going throught the entire morse string, set the node that you arrived at to the letter
 	}
-	return mTree;
+	return mTree;					//After finished with the file, return the tree
 }
 
 string decode(string morse, Binary_Tree<char> mTree) {
@@ -81,14 +84,18 @@ string decode(string morse, Binary_Tree<char> mTree) {
 }
 
 string encode(string chars, map<char, string> mMap) {
+	/*Takes in a string of letters and the morse map to return the morse coded string
+	Time Complexity: O(nlogn)
+		-Because the function needs to go through the entire string
+		of letters to get each morse code*/
 	string morse = "";
 	string::iterator iter = chars.begin();
 
 	while (iter != chars.end()) {
-		morse += mMap[*iter];
+		morse += mMap[*iter];		//Add each character's morse code to the morse string
 		iter++;
-		if (iter != chars.end())
+		if (iter != chars.end())		//If not done with the letter string, put a space after every code
 			morse += " ";
 	}
-	return morse;
+	return morse;				//Return the morse coded string
 }
