@@ -30,6 +30,9 @@
     <ClInclude Include="Syntax_Error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Morse_Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
