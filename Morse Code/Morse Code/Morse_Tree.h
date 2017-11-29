@@ -8,6 +8,11 @@ template<typename Item_Type>
 class Morse_Tree : public Binary_Tree<Item_Type>
 {
 public:
+	Morse_Tree();
 
 };
+
+Morse_Tree::Morse_Tree() {
+
+}
 #endif
