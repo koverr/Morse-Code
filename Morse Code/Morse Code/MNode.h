@@ -5,8 +5,8 @@
 struct MNode {
 
 	char data;
-	MNode* right;
 	MNode* left;
+	MNode* right;
 
 	MNode(const char the_data,
 		MNode* left_val = NULL,
