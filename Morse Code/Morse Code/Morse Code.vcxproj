@@ -114,6 +114,7 @@
     <ClInclude Include="Binary_Search_Tree.h" />
     <ClInclude Include="Binary_Tree.h" />
     <ClInclude Include="BTNode.h" />
+    <ClInclude Include="MNode.h" />
     <ClInclude Include="Morse_Tree.h" />
     <ClInclude Include="String_Tokenizer.h" />
     <ClInclude Include="Syntax_Error.h" />
