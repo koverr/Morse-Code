@@ -1,28 +1,25 @@
 #include <iostream>
-#include "Binary_Tree.h"
+#include "Morse_Tree.h"
 
 using namespace std;
 
-Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap);
-string decode(string morse, Binary_Tree<char> mTree);
-string encode(string chars, map<char, string> mMap);
-
 int main() {
 	ifstream morseFile("morse.txt");
-	map<char, string> mMap;
-	Binary_Tree<char> mTree = create(morseFile, mMap);
+	Morse_Tree mTree(morseFile);
 
-	cout << decode("._ ._.. . _._.", mTree) << endl;
+	cout << mTree.decode("._ ._.. . _._.") << endl;
 
-	cout << decode(encode("abcdefghijklmnopqrstuvwxyz", mMap), mTree);
+	cout << mTree.decode(mTree.encode("abcdefghijklmnopqrstuvwxyz"));
 	cin.get();
-}
 
+	return 0;
+}
+/*
 Binary_Tree<char> create(std::ifstream& fin, map<char, string>& mMap) {		
 	/*Takes in an input file, and a morse map reads in
 	the information needed to complete the morse map and tree
 	Time Complexity: O(n)
-		-Because the function needs to read through all of the morse strings*/
+		-Because the function needs to read through all of the morse strings
 	char letter;
 	string morse;
 	Binary_Tree<char> mTree;
@@ -92,7 +89,7 @@ string encode(string chars, map<char, string> mMap) {
 	/*Takes in a string of letters and the morse map to return the morse coded string
 	Time Complexity: O(nlogn)
 		-Because the function needs to go through the entire string
-		of letters to get each morse code*/
+		of letters to get each morse code
 	string morse = "";
 	string::iterator iter = chars.begin();
 
@@ -104,3 +101,4 @@ string encode(string chars, map<char, string> mMap) {
 	}
 	return morse;				//Return the morse coded string
 }
+*/
