@@ -59,6 +59,7 @@ Morse_Tree::Morse_Tree(std::ifstream & fin)
 	//mTree.setRoot(root);
 
 	while (!fin.eof()) {			//While the there is still data in the file
+		
 		ptr = root;						//Start at the top of the tree
 		fin >> letter;
 		getline(fin, morse);
