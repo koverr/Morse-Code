@@ -70,6 +70,10 @@ Morse_Tree::Morse_Tree(ifstream& fin)
 
 string Morse_Tree::decode(string morse)
 {
+	// Takes in a string of morse code seperated by spaces and a Morse code Binary Tree and converts the string from
+	// Morse code to letters
+	// Complexity: O(n) because it iterates through the string and makes a single pointer traversal for each char in the string
+
 	string::iterator strItr = morse.begin();
 	string decoded = "";
 	MNode* ptr;
