@@ -13,8 +13,6 @@ class Morse_Tree
 {
 public:
 
-
-
 	// Constructs a Morse Tree from a file stream
 	Morse_Tree(ifstream& fin);
 		
@@ -23,7 +21,6 @@ public:
 
 	// Takes a string of characters and converts it to morse code
 	string Morse_Tree::encode(string chars);
-
 
 private:
 	map<char, string> mMap;

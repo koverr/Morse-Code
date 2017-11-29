@@ -12,5 +12,4 @@ struct MNode {
 		MNode* left_val = NULL,
 		MNode* right_val = NULL) :
 		data(the_data), left(left_val), right(right_val) {}
-
 };
